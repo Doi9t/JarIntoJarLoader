@@ -50,7 +50,7 @@ public class JarIntoJarLoader extends ClassLoader {
         }
 
     }
-    
+
     //Entry points
     @Override
     protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
