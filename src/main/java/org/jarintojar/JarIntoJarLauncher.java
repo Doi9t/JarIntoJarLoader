@@ -27,13 +27,13 @@ import java.util.jar.Manifest;
 /**
  * Created by Yannick on 12/21/2015.
  */
-public class App {
+public class JarIntoJarLauncher {
     public static void main(String[] args) {
         JarIntoJarLoader loader = new JarIntoJarLoader();
 
         try {
             //Read the main from the manifest
-            URLClassLoader urlCl = (URLClassLoader) App.class.getClassLoader();
+            URLClassLoader urlCl = (URLClassLoader) JarIntoJarLauncher.class.getClassLoader();
             Manifest manifest = new Manifest(urlCl.findResource("META-INF/MANIFEST.MF").openStream());
             String binaryNameMain = manifest.getMainAttributes().getValue("entry-point");
 

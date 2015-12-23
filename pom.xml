@@ -38,7 +38,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.jarintojar.App</mainClass>
+                            <mainClass>org.jarintojar.JarIntoJarLauncher</mainClass>
                             <addClasspath>true</addClasspath>
                         </manifest>
                         <manifestEntries>
