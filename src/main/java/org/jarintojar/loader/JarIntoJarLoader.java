@@ -55,16 +55,27 @@ public class JarIntoJarLoader extends ClassLoader {
     @Override
     protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
 
-        Class<?> loadedClass = findLoadedClass(name);
+        Class<?> loadedClass = findLoadedClass(name); //Check if the class is already loaded
 
-        if (loadedClass == null) { //Try in the parent classloader (remove the ClassNotFoundException on the Object class)
+        if (loadedClass == null) {
             try {
-                loadedClass = getParent().loadClass(name);
-            } catch (ClassNotFoundException ex) {
+                loadedClass = getClassFromCache(name); //Check in the cache
+            } catch (ClassNotFoundException e) {
             }
         }
 
-        return (loadedClass != null) ? loadedClass : getClassFromCache(name);
+        if (loadedClass == null) {
+            try {
+                loadedClass = getParent().loadClass(name); //Check in the parent
+            } catch (ClassNotFoundException e) {
+            }
+        }
+
+        if (loadedClass == null) {
+            throw new ClassNotFoundException("Unable to find the class: " + name);
+        }
+
+        return loadedClass;
     }
 
     private Class<?> getClassFromCache(String name) throws ClassNotFoundException {
@@ -95,11 +106,9 @@ public class JarIntoJarLoader extends ClassLoader {
                         switch (getFileType(currentBytes, fileExt)) {
                             case CLASS:
                                 String binaryName = getBinaryName(baseName);
-                                System.out.println("Found class: " + binaryName);
                                 rawClassChache.put(binaryName, concatArrays(currentBytes, readInput(zis)));
                                 break;
                             case JAR:
-                                System.out.println("Found jar: " + baseName);
                                 initClassCache(new JarInputStream(new ByteArrayInputStream(concatArrays(currentBytes, readInput(zis)))));
                                 break;
                         }

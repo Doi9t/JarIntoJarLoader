@@ -43,6 +43,7 @@
                         </manifest>
                         <manifestEntries>
                             <Class-Path>lib/</Class-Path>
+                            <entry-point>org.jarintojar.FalseMain</entry-point>
                         </manifestEntries>
                     </archive>
                 </configuration>
