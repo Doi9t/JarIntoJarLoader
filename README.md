@@ -44,7 +44,7 @@ With maven (example):
                     </manifest>
                     <manifestEntries>
                         <Class-Path>lib/</Class-Path> <!--You can change the location of the libs -->
-                        <entry-point>org.app.MyMain</entry-point> <!--Change this to your main class -->
+                        <Entry-Point>org.app.MyMain</Entry-Point> <!--Change this to your main class -->
                     </manifestEntries>
                 </archive>
             </configuration>
