@@ -6,11 +6,11 @@ JarIntoJar is a [classloader](https://en.wikipedia.org/wiki/Java_Classloader) th
 
 **How to use**
 
-1) Include the JarIntoJarLauncher file (JarIntoJarLauncher.java) into your project
+1) Include the JarIntoJarLauncher file (JarIntoJarLauncher.java) AND JarIntoJarLoader (JarIntoJarLoader.java) into your project
 
 2) Edit the jar manifest
 
-With maven:
+With maven (example):
 ~~~xml
 <build>
     <plugins>
@@ -56,6 +56,6 @@ With maven:
 Manually:
 ~~~
     Edit the jar manifest
-        - Add the value "entry-point: [Location of your main class]"
-        - Edit the value "Main-Class: [Location of the JarIntoJarLauncher]"
+        - Add the value "Entry-Point: [Location of your main class]"
+        - Edit the value "Main-Class: [Location of JarIntoJarLauncher]"
 ~~~

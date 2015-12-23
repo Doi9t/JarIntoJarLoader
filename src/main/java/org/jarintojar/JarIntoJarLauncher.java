@@ -35,7 +35,7 @@ public class JarIntoJarLauncher {
             //Read the main from the manifest
             URLClassLoader urlCl = (URLClassLoader) JarIntoJarLauncher.class.getClassLoader();
             Manifest manifest = new Manifest(urlCl.findResource("META-INF/MANIFEST.MF").openStream());
-            String binaryNameMain = manifest.getMainAttributes().getValue("entry-point");
+            String binaryNameMain = manifest.getMainAttributes().getValue("Entry-Point");
 
             if (binaryNameMain != null && !binaryNameMain.isEmpty()) {
 

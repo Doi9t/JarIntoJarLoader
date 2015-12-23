@@ -21,8 +21,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
@@ -39,16 +37,12 @@ public class JarIntoJarLoader extends ClassLoader {
         rawClassChache = new HashMap<String, byte[]>();
 
         try {
-            Instant start = Instant.now();
             initClassCache(new JarInputStream(getClass().getProtectionDomain().getCodeSource().getLocation().toURI().toURL().openStream()));
-            Instant end = Instant.now();
-            System.out.println(Duration.between(start, end));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-
     }
 
     //Entry points
