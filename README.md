@@ -8,10 +8,10 @@ JarIntoJar is a [classloader](https://en.wikipedia.org/wiki/Java_Classloader) th
 
 This classloader is still in development AND WILL slowdown your application (Depends on how many libraries you have in your application)
 
-Example:
-141 MB of libraries, it take about 43.166 seconds to init.
-32.8 MB of libraries, it take about 14.119 seconds to init.
-2.20 MB of libraries, it take about 2.047 seconds to init.
+Example:<br>
+141 MB of libraries, it take about 43.166 seconds to init.<br>
+32.8 MB of libraries, it take about 14.119 seconds to init.<br>
+2.20 MB of libraries, it take about 2.047 seconds to init.<br>
 
 Please, keep this in mind before using it
 
