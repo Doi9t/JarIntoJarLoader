@@ -23,10 +23,10 @@ Please, keep this in mind before using it !
 - Lower DISK usage
 - Faster class access When the class is now loaded in the parent classloader)
 
-**How to use**
-1) Include the JarIntoJarLauncher file (JarIntoJarLauncher.java) into your project
+**How to use**<br>
+1) Include the JarIntoJarLauncher file (JarIntoJarLauncher.java) into your project<br>
 
-2) Edit the jar manifest
+2) Edit the jar manifest<br>
 
 With maven (example):
 ~~~xml
