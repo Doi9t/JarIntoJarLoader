@@ -49,7 +49,7 @@ public class JarIntoJarLauncher {
             String fetcherMode = manifest.getMainAttributes().getValue("Fetcher-Mode");
 
 
-            if (binaryNameMain != null && !binaryNameMain.isEmpty() && fetcherMode != null && !fetcherMode.isEmpty()) {
+            if (binaryNameMain != null && !binaryNameMain.isEmpty()) {
                 loader = new JarIntoJarLoader(fetcherMode);
 
                 Class<?> main = loader.loadClass(binaryNameMain);
