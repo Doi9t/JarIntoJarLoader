@@ -6,17 +6,24 @@ JarIntoJar is a [classloader](https://en.wikipedia.org/wiki/Java_Classloader) th
 
 **Warning**
 
-This classloader is still in development AND WILL slowdown your application (Depends on how many libraries you have in your application)
+This classloader is still in development AND WILL slowdown your application (Depends on how many libraries you have in your application)<br>
+Please, keep this in mind before using it !
 
-Example:<br>
-141 MB of libraries, it take about 43.166 seconds to init.<br>
-32.8 MB of libraries, it take about 14.119 seconds to init.<br>
-2.20 MB of libraries, it take about 2.047 seconds to init.<br>
+**DirectClassFetcher vs MemoryCacheFetcher**
 
-Please, keep this in mind before using it
+*DirectClassFetcher*
+- lower CPU usage
+- lower HEAP usage
+- Higher DISK usage
+- Slower class access (When the class is now loaded in the parent classloader)
+
+*MemoryCacheFetcher*
+- Higher CPU usage
+- Higher HEAP usage
+- Lower DISK usage
+- Faster class access When the class is now loaded in the parent classloader)
 
 **How to use**
-
 1) Include the JarIntoJarLauncher file (JarIntoJarLauncher.java) into your project
 
 2) Edit the jar manifest
@@ -50,12 +57,13 @@ With maven (example):
             <configuration>
                 <archive>
                     <manifest>
-                        <mainClass>org.jarintojar.JarIntoJarLauncher</mainClass> <!--Point to JarIntoJarLauncher -->
+                        <mainClass>org.jarintojar.JarIntoJarLauncher</mainClass> <!-- Point to JarIntoJarLauncher -->
                         <addClasspath>true</addClasspath>
                     </manifest>
                     <manifestEntries>
-                        <Class-Path>lib/</Class-Path> <!--You can change the location of the libs -->
-                        <Entry-Point>org.app.MyMain</Entry-Point> <!--Change this to your main class -->
+                        <Class-Path>lib/</Class-Path> <!-- You can change the location of the libs -->
+                        <Entry-Point>org.app.MyMain</Entry-Point> <!-- Change this to your main class -->
+                        <Fetcher-Mode>DirectClassFetcher</Fetcher-Mode> <!-- DirectClassFetcher or MemoryCacheFetcher -->
                     </manifestEntries>
                 </archive>
             </configuration>
@@ -69,4 +77,7 @@ Manually:
     Edit the jar manifest
         - Add the value "Entry-Point: [Location of your main class]"
         - Edit the value "Main-Class: [Location of JarIntoJarLauncher]"
+
+    Optional settings
+        - "Fetcher-Mode: [DirectClassFetcher or MemoryCacheFetcher]" (Default is MemoryCacheFetcher)
 ~~~
